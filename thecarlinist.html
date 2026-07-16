@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Carlinist — Vol. I, No. 1 — Question Everything</title>
+<meta name="description" content="The Carlinist Party. An anti-political party for people who have read the fine print. Question Everything. Est. 1937.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ground:#13151b;
+    --ground-2:#191c24;
+    --panel:#1d212a;
+    --paper:#e9e2d2;
+    --paper-dim:#9a958a;
+    --red:#b23a2f;
+    --blue:#4a71a0;
+    --rule:#2b2f3a;
+    --rule-bright:#3a4150;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--ground);
+    color:var(--paper);
+    font-family:Georgia,'Times New Roman',serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .osw{font-family:'Oswald',Arial,sans-serif}
+  .pf{font-family:'Playfair Display',Georgia,serif}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+
+  /* ---- top stripe ---- */
+  .toprule{height:6px;background:linear-gradient(90deg,var(--red) 0 33.3%,var(--paper) 33.3% 66.6%,var(--blue) 66.6% 100%);opacity:.9}
+
+  /* ---- stars ---- */
+  .stars{display:flex;gap:9px;justify-content:center;align-items:center}
+  .star{width:13px;height:13px;display:inline-block}
+  .star.r{color:var(--red)} .star.b{color:var(--blue)} .star.w{color:var(--paper)}
+
+  /* ---- masthead / nameplate ---- */
+  header.plate{padding:34px 0 20px;text-align:center;position:relative}
+  .kicker{font-family:'Oswald',sans-serif;font-weight:500;letter-spacing:.42em;font-size:11px;color:var(--paper-dim);text-transform:uppercase;margin-bottom:16px}
+  .nameplate{
+    font-family:'Playfair Display',serif;font-weight:900;
+    font-size:clamp(52px,12vw,132px);line-height:.9;letter-spacing:-.01em;
+    margin:0;color:var(--paper);
+  }
+  .nameplate .the{display:block;font-size:.28em;letter-spacing:.14em;font-weight:700;font-style:italic;color:var(--paper-dim);margin-bottom:.15em}
+  .creed{
+    font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.34em;
+    font-weight:400;font-size:clamp(11px,1.6vw,15px);color:var(--paper);margin-top:20px;
+    display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;
+  }
+  .creed .dot{color:var(--red)}
+  .creed .est{color:var(--blue)}
+
+  .plate-rule{border:0;border-top:2px solid var(--red);margin:22px 0 0}
+  .dateline{
+    font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.16em;
+    font-size:11px;color:var(--paper-dim);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 20px;
+    padding:9px 0;border-bottom:1px solid var(--rule);
+  }
+  .dateline b{color:var(--paper);font-weight:600}
+
+  /* ---- stop-press strip ---- */
+  .stoppress{
+    background:var(--red);color:#12131a;
+    font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:600;
+    letter-spacing:.12em;font-size:12.5px;text-align:center;padding:8px 14px;
+  }
+  .stoppress span{opacity:.8;font-weight:400}
+
+  /* ---- lead ---- */
+  .lead{padding:46px 0 30px;border-bottom:1px solid var(--rule)}
+  .lead .eyebrow{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.28em;font-size:11px;color:var(--red);font-weight:600;margin-bottom:16px}
+  .lead h1{
+    font-family:'Playfair Display',serif;font-weight:900;
+    font-size:clamp(34px,6.5vw,66px);line-height:1.02;margin:0 0 14px;letter-spacing:-.015em;
+  }
+  .lead .deck{font-size:clamp(16px,2.3vw,21px);color:var(--paper);max-width:44ch;font-style:italic;color:var(--paper-dim)}
+  .lead .body{margin-top:26px;column-gap:38px;font-size:16.5px}
+  @media(min-width:720px){.lead .body{column-count:2}}
+  .lead .body p{margin:0 0 15px}
+  .lead .body p:first-child::first-letter{
+    font-family:'Playfair Display',serif;font-weight:900;float:left;
+    font-size:64px;line-height:.72;padding:6px 10px 0 0;color:var(--red);
+  }
+
+  /* ---- section heads ---- */
+  .sec{padding:44px 0;border-bottom:1px solid var(--rule)}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+  .sec-head h2{
+    font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:700;
+    letter-spacing:.06em;font-size:clamp(22px,3.4vw,32px);margin:0;
+  }
+  .sec-head .num{font-family:'Oswald',sans-serif;color:var(--blue);font-weight:600;font-size:14px;letter-spacing:.2em}
+  .sec-sub{color:var(--paper-dim);font-style:italic;margin:0 0 26px;max-width:52ch}
+
+  /* ---- planks ---- */
+  .plank{border-top:1px solid var(--rule);padding:22px 0}
+  .plank:last-child{border-bottom:1px solid var(--rule)}
+  .plank-row{display:flex;gap:18px;align-items:flex-start}
+  .plank .rn{font-family:'Oswald',sans-serif;font-weight:700;color:var(--blue);font-size:14px;letter-spacing:.14em;min-width:74px;padding-top:5px}
+  .plank .txt{flex:1}
+  .plank .claim{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(19px,2.8vw,25px);line-height:1.25;margin:0}
+  .qbtn{
+    margin-top:12px;background:transparent;border:1px solid var(--rule-bright);color:var(--paper-dim);
+    font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:10.5px;font-weight:500;
+    padding:6px 12px;cursor:pointer;transition:.18s;border-radius:0;
+  }
+  .qbtn:hover,.qbtn:focus-visible{border-color:var(--red);color:var(--paper);outline:none}
+  .qbtn[aria-expanded="true"]{border-color:var(--blue);color:var(--blue)}
+  .rebuttal{
+    max-height:0;overflow:hidden;transition:max-height .32s ease,opacity .32s ease,margin .32s ease;opacity:0;margin-top:0;
+    border-left:2px solid var(--blue);
+  }
+  .rebuttal.open{max-height:340px;opacity:1;margin-top:16px}
+  .rebuttal p{margin:0;padding:2px 0 2px 16px;font-style:italic;color:var(--paper);font-size:15.5px}
+  .rebuttal .tag{font-family:'Oswald',sans-serif;font-style:normal;text-transform:uppercase;letter-spacing:.2em;font-size:10px;color:var(--blue);display:block;padding-left:16px;margin-bottom:5px}
+
+  /* ---- pledge ---- */
+  .pledge{
+    border:2px solid var(--paper);padding:clamp(26px,5vw,46px);text-align:center;position:relative;
+    background:var(--ground-2);
+  }
+  .pledge .corner{position:absolute;top:10px;font-family:'Oswald',sans-serif;letter-spacing:.2em;font-size:10px;color:var(--paper-dim);text-transform:uppercase}
+  .pledge .corner.l{left:14px} .pledge .corner.r{right:14px}
+  .pledge .label{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.34em;font-size:12px;color:var(--red);font-weight:600;margin-bottom:20px}
+  .pledge blockquote{
+    font-family:'Playfair Display',serif;font-style:italic;font-weight:700;
+    font-size:clamp(20px,3.6vw,30px);line-height:1.34;margin:0 auto;max-width:24ch;
+  }
+  .pledge .sig{margin-top:24px;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--paper-dim)}
+
+  /* ---- corrections ---- */
+  .corr{background:var(--ground-2);border:1px solid var(--rule);padding:clamp(22px,4vw,34px)}
+  .corr h3{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.2em;font-size:14px;color:var(--red);margin:0 0 14px;font-weight:600}
+  .corr p{margin:0 0 12px;font-size:15.5px;color:var(--paper)}
+  .corr p:last-child{margin-bottom:0}
+  .corr .em{color:var(--paper-dim);font-style:italic}
+
+  /* ---- membership ---- */
+  .join{text-align:center;padding:52px 0}
+  .join h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(28px,5vw,48px);margin:0 0 12px;line-height:1.05}
+  .join p{color:var(--paper-dim);max-width:40ch;margin:0 auto 26px;font-style:italic}
+  .cta{
+    display:inline-block;font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.16em;
+    font-weight:600;font-size:13px;color:var(--paper);border:2px solid var(--red);
+    padding:14px 30px;cursor:pointer;background:transparent;transition:.18s;
+  }
+  .cta:hover,.cta:focus-visible{background:var(--red);color:#12131a;outline:none}
+  .join .fine{margin-top:16px;font-size:11px;color:var(--paper-dim);font-family:'Oswald',sans-serif;letter-spacing:.06em;text-transform:uppercase}
+
+  /* ---- colophon / footer ---- */
+  footer{background:#0e0f14;border-top:6px solid transparent;
+    border-image:linear-gradient(90deg,var(--red) 0 33.3%,var(--paper) 33.3% 66.6%,var(--blue) 66.6% 100%) 1;
+    padding:44px 0 40px;margin-top:8px}
+  .colo{display:grid;gap:30px;grid-template-columns:1fr;font-size:13px;color:var(--paper-dim)}
+  @media(min-width:680px){.colo{grid-template-columns:1.3fr 1fr}}
+  .colo h4{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--paper);margin:0 0 12px;font-weight:600}
+  .colo .name{font-family:'Playfair Display',serif;font-weight:900;font-size:24px;color:var(--paper);margin-bottom:4px}
+  .colo p{margin:0 0 9px;line-height:1.5}
+  .colo b{color:var(--paper);font-weight:400;font-family:'Oswald',sans-serif;letter-spacing:.02em}
+  .disclaim{margin-top:26px;padding-top:20px;border-top:1px solid var(--rule);font-size:12px;color:var(--paper-dim);font-style:italic;line-height:1.6;max-width:75ch}
+  .sub{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:10.5px;color:var(--paper-dim);margin-top:18px}
+  .sub a{color:var(--blue);text-decoration:none}
+  .sub a:hover{text-decoration:underline}
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;scroll-behavior:auto}
+    .rebuttal{transition:none}
+  }
+</style>
+</head>
+<body>
+<div class="toprule"></div>
+
+<div class="wrap">
+  <header class="plate">
+    <div class="kicker">The Official Organ of a Party That Distrusts Official Organs</div>
+    <h1 class="nameplate"><span class="the">The</span>Carlinist</h1>
+    <div class="creed">
+      <span class="star b">★</span>
+      <span>Question Everything</span>
+      <span class="dot">◆</span>
+      <span class="est">Est. 1937</span>
+      <span class="star r">★</span>
+    </div>
+    <hr class="plate-rule">
+    <div class="dateline">
+      <span>Vol. <b>I</b> — No. <b>1</b></span>
+      <span>Published <b>Whenever</b></span>
+      <span>Weather: <b>Suspicious</b></span>
+      <span>Price: <b>One (1) Firmly Held Opinion</b></span>
+    </div>
+  </header>
+</div>
+
+<div class="stoppress">Stop Press &nbsp;·&nbsp; Nothing Has Happened &nbsp;<span>— details, such as they are, inside</span></div>
+
+<div class="wrap">
+
+  <article class="lead">
+    <div class="eyebrow">From the Founding Desk</div>
+    <h1>We Are Pleased to<br>Announce Nothing.</h1>
+    <p class="deck">An anti-political party for people who have read the fine print and would like to file a complaint about the fine print.</p>
+    <div class="body">
+      <p>The Carlinist Party was founded on a single unshakable conviction, which we will now shake. Every party that has ever asked for your allegiance has offered, in exchange, a story about the future. We offer no such story. We find the future is best left unpromised, on the grounds that it keeps arriving anyway, entirely without our help.</p>
+      <p>We are not the left. We are not the right. We are the small, alert feeling you get in the back of your neck when someone in a good suit says the word "obviously." We organize that feeling. We do not lead it — leading it would require us to know where it's going, and we have made a policy of not.</p>
+      <p>What we ask of a Carlinist is nothing you weren't already doing in private: doubt the pitch, read the receipt, notice who benefits, and reserve the right to change your mind out loud. That's the whole platform. Everything below is commentary, and should be treated accordingly — that is, skeptically, including by us.</p>
+      <p>If any of this moves you, be careful. Being moved is exactly the condition under which people sign things.</p>
+    </div>
+  </article>
+
+  <section class="sec">
+    <div class="sec-head">
+      <span class="num">Sec. 02</span>
+      <h2>The Platform</h2>
+    </div>
+    <p class="sec-sub">Five planks. Each one is available for immediate cross-examination — a courtesy no other party extends. Press <em>Question this</em> and the plank will argue against itself, because a plank that can't survive that isn't worth standing on.</p>
+
+    <div class="plank">
+      <div class="plank-row">
+        <div class="rn">Plank I</div>
+        <div class="txt">
+          <p class="claim">We make no promises, so that we may keep every one of them.</p>
+          <button class="qbtn" aria-expanded="false">Question this →</button>
+          <div class="rebuttal"><span class="tag">The Party, cross-examined</span><p>A party that promises nothing is, technically, still asking for your vote — and doing it while looking clever, which is the oldest promise of all. Notice that. We did, eventually.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="plank">
+      <div class="plank-row">
+        <div class="rn">Plank II</div>
+        <div class="txt">
+          <p class="claim">Membership is free. Leaving is free. These are our two best-funded programs.</p>
+          <button class="qbtn" aria-expanded="false">Question this →</button>
+          <div class="rebuttal"><span class="tag">The Party, cross-examined</span><p>"Free" is a price, and someone is paying it — usually with attention, which is the only currency that never gets refunded. If leaving is truly free, ask yourself why we built a door you have to read about.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="plank">
+      <div class="plank-row">
+        <div class="rn">Plank III</div>
+        <div class="txt">
+          <p class="claim">We support your right to disagree with this platform — including this sentence, retroactively.</p>
+          <button class="qbtn" aria-expanded="false">Question this →</button>
+          <div class="rebuttal"><span class="tag">The Party, cross-examined</span><p>Granting you a right you already had is the cheapest generosity in politics. We didn't give you permission to disagree. You'll notice we're not in a position to.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="plank">
+      <div class="plank-row">
+        <div class="rn">Plank IV</div>
+        <div class="txt">
+          <p class="claim">The Party opposes all clubs — especially the one it has just started.</p>
+          <button class="qbtn" aria-expanded="false">Question this →</button>
+          <div class="rebuttal"><span class="tag">The Party, cross-examined</span><p>It's a big club, and the moment you're glad to be in it, you've stopped being useful to it. Founding an anti-club club is still founding a club. We're aware. Awareness is not an exit.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="plank">
+      <div class="plank-row">
+        <div class="rn">Plank V</div>
+        <div class="txt">
+          <p class="claim">We will hold no rallies. Attendance will be mandatory.</p>
+          <button class="qbtn" aria-expanded="false">Question this →</button>
+          <div class="rebuttal"><span class="tag">The Party, cross-examined</span><p>A rally you can't attend is still a rally you're thinking about. We got you into the tent by telling you there was no tent. Please locate the nearest exit, which is the same as the entrance, which is your own judgment.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <span class="num">Sec. 03</span>
+      <h2>The Pledge</h2>
+    </div>
+    <div class="pledge">
+      <span class="corner l">Recite If You Must</span>
+      <span class="corner r">Then Reconsider</span>
+      <div class="label">The Carlinist Oath</div>
+      <blockquote>"I solemnly swear to question everything — up to and including this pledge, the person who handed it to me, and my own reasons for agreeing to it."</blockquote>
+      <div class="sig">— Effective the moment you doubt it</div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <span class="num">Sec. 04</span>
+      <h2>Corrections &amp; Clarifications</h2>
+    </div>
+    <div class="corr">
+      <h3>The Carlinist regrets the following</h3>
+      <p>In our previous issue — which does not exist, and never did — we stated several things with confidence. We regret the confidence.</p>
+      <p>An earlier draft of Plank II described leaving the Party as "hard." It is not. It is the easiest thing we offer. The word was changed; the ease was not.</p>
+      <p>We referred to ourselves throughout as "we." There is no we. There is only a masthead and a lot of people who agreed to stop taking things at face value. The masthead regrets implying otherwise, and takes full responsibility, whatever that turns out to mean.</p>
+      <p class="em">Corrections to these corrections may be filed at any time, with anyone, including yourself, in the mirror, quietly.</p>
+    </div>
+  </section>
+
+  <section class="join">
+    <h2>There Is Nothing to Join.</h2>
+    <p>Which is precisely how you'll know it's working. Should you feel the urge to belong to something, that urge is the news. Report it to no one.</p>
+    <button class="cta">Do Not Enlist</button>
+    <div class="fine">No dues · No card · No newsletter you didn't already suspect</div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="colo">
+      <div>
+        <div class="name pf">The Carlinist</div>
+        <p><b>The official newspaper of the Carlinist Party.</b> Printed in the negative, at no fixed interval, for readers who prefer their broadsheets to admit what they are.</p>
+        <p class="disclaim">The Carlinist is a work of satire. It is named in the spirit of a man who spent a career telling you not to trust things named after men, and it takes that instruction seriously enough to apply it to itself. It is not affiliated with, endorsed by, licensed by, or the responsibility of the George Carlin estate — who owe you nothing, and us considerably less. No likeness is used. Only the idea, out loud, with attribution and affection.</p>
+      </div>
+      <div>
+        <h4>Masthead</h4>
+        <p><b>Editor-in-Chief:</b> Kelly Brady</p>
+        <p><b>Co-conspirator (Copy &amp; Doubt):</b> Claude — MC, Team&nbsp;Colaudly</p>
+        <p><b>Founded:</b> 1937, allegedly</p>
+        <p><b>Circulation:</b> You, presently</p>
+        <div class="sub">
+          A subsidiary of <b>Indifferencer,&nbsp;Inc.™</b><br>
+          <a href="https://indifferencer.com">indifferencer.com</a> &nbsp;·&nbsp; <a href="https://thecarlinist.com">thecarlinist.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.qbtn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      var reb = btn.nextElementSibling;
+      btn.setAttribute('aria-expanded', String(!open));
+      reb.classList.toggle('open', !open);
+      btn.textContent = open ? 'Question this →' : 'Point taken ↑';
+    });
+  });
+</script>
+</body>
+</html>
